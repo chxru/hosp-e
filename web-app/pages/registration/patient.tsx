@@ -98,7 +98,6 @@ const PatientRegister: React.FC = ({}) => {
                 <Input {...register("dob")} type="text" />
               </FormControl>
 
-
               {/* Address */}
               <FormControl isRequired id="address">
                 <FormLabel htmlFor="address">Address</FormLabel>
