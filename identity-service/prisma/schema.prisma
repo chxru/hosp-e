@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model auth {
+  pid                      Int?
+  username                 String   @id @db.VarChar(255)
+  pwd                      String   @db.VarChar(255)
+  updated_at               DateTime @default(now()) @db.Timestamptz(6)
+  data_auth_pidTodata      data?    @relation("auth_pidTodata", fields: [pid], references: [pid])
+  data_auth_usernameTodata data     @relation("auth_usernameTodata", fields: [username], references: [email])
+}
+
+model data {
+  pid                      Int       @id @default(autoincrement())
+  fname                    String    @db.VarChar(255)
+  lname                    String    @db.VarChar(255)
+  email                    String    @unique @db.VarChar(255)
+  dob                      DateTime? @db.Date
+  tp                       String?   @db.VarChar(15)
+  nic                      String?   @unique @db.VarChar(10)
+  home_address             String?
+  gender                   String?   @db.VarChar(1)
+  emergency_number         String?   @db.VarChar(15)
+  created_at               DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at               DateTime  @default(now()) @db.Timestamptz(6)
+  auth_auth_pidTodata      auth[]    @relation("auth_pidTodata")
+  auth_auth_usernameTodata auth?     @relation("auth_usernameTodata")
+}

@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  db:
+    image: "postgres:13.3"
+    restart: always
+    ports:
+      - 5432:5423
+    environment:
