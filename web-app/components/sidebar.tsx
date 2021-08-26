@@ -15,51 +15,47 @@ import {
   InputLeftElement,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { IconType } from "react-icons/lib";
 import { FiSearch, FiBell, FiMenu } from "react-icons/fi";
 
 interface sidebarProps {
   children: React.ReactNode;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const NavItem = (props: {
-  children: React.ReactNode;
-  icon: IconType;
-  route: string;
-}) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+const NavItem = (props: { name: string; route: string }) => {
   const router = useRouter();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { icon, children, route, ...rest } = props;
+  const { name, route } = props;
+
   return (
-    <Flex
-      align="center"
-      py="20px"
-      cursor="pointer"
-      color="black"
-      role="group"
-      fontWeight="semibold"
-      transition=".15s ease"
+    <Button
+      width="3xs"
+      justifyContent="left"
+      bg="white"
+      height="64px"
+      mb="15px"
+      mx={-10}
+      _hover={{
+        bg: "gray.200",
+        borderRadius: "10px",
+        borderLeftRadius: "0px",
+      }}
+      _active={{
+        bg: "gray.200",
+        borderRadius: "10px",
+        borderLeftRadius: "0px",
+        transform: "scale(0.98)",
+      }}
+      _focus={{ _focus: "none" }}
+      onClick={() => {
+        router.push(route);
+      }}
     >
-      {icon && (
-        <Icon
-          mr="2"
-          boxSize="4"
-          _groupHover={{
-            color: "gray.600",
-          }}
-          as={icon}
-        />
-      )}
-      {children}
-    </Flex>
+      {name}
+    </Button>
   );
 };
 
 const SidebarContent = (props: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  display?: any;
+  display?: { [key: string]: string };
   w?: string;
   borderRight?: string;
 }) => {
@@ -101,52 +97,8 @@ const SidebarContent = (props: {
         </Flex>
 
         {/* Navigation buttons */}
-        <Button
-          width="3xs"
-          justifyContent="left"
-          bg="white"
-          height="64px"
-          mb="30px"
-          mt="40px"
-          mx={-10}
-          _hover={{
-            bg: "gray.200",
-            borderRadius: "10px",
-            borderLeftRadius: "0px",
-          }}
-          _active={{
-            bg: "gray.200",
-            borderRadius: "10px",
-            borderLeftRadius: "0px",
-            transform: "scale(0.98)",
-          }}
-          _focus={{ _focus: "none" }}
-        >
-          Dashboard
-        </Button>
-
-        <Button
-          width="3xs"
-          justifyContent="left"
-          bg="white"
-          height="64px"
-          mb="30px"
-          mx={-10}
-          _hover={{
-            bg: "gray.200",
-            borderRadius: "10px",
-            borderLeftRadius: "0px",
-          }}
-          _active={{
-            bg: "gray.200",
-            borderRadius: "10px",
-            borderLeftRadius: "0px",
-            transform: "scale(0.98)",
-          }}
-          _focus={{ _focus: "none" }}
-        >
-          Home
-        </Button>
+        <NavItem name="Dashboard" route="/dashboard" />
+        <NavItem name="Home" route="/dashboard" />
       </Flex>
     </Box>
   );
