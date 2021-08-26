@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Avatar,
   Box,
@@ -15,23 +14,23 @@ import {
   InputGroup,
   InputLeftElement,
 } from "@chakra-ui/react";
-import React, { useContext } from "react";
-import { HamburgerIcon } from "@chakra-ui/icons";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 import { IconType } from "react-icons/lib";
-import { FaBell } from "react-icons/fa";
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiBell, FiMenu } from "react-icons/fi";
 
 interface sidebarProps {
   children: React.ReactNode;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const NavItem = (props: {
   children: React.ReactNode;
   icon: IconType;
   route: string;
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { icon, children, route, ...rest } = props;
   return (
     <Flex
@@ -189,8 +188,8 @@ const Sidebar: React.FC<sidebarProps> = ({ children }) => {
             aria-label="Menu"
             display={{ base: "inline-flex", md: "none" }}
             onClick={sidebar.onOpen}
-            icon={<HamburgerIcon />}
-            size="sm"
+            icon={<Icon color="gray.500" as={FiMenu} cursor="pointer" />}
+            size="lg"
             mr={5}
           />
 
@@ -209,8 +208,7 @@ const Sidebar: React.FC<sidebarProps> = ({ children }) => {
             borderWidth="0px"
           >
             <InputLeftElement>
-              {" "}
-              <Icon color="gray.500" as={FiSearch} cursor="pointer" />{" "}
+              <Icon color="gray.500" as={FiSearch} cursor="pointer" />
             </InputLeftElement>
             <Input
               _focus={{ _focus: "none" }}
@@ -224,7 +222,7 @@ const Sidebar: React.FC<sidebarProps> = ({ children }) => {
 
           {/* notification and profile icon */}
           <Flex align="center">
-            <Icon color="gray.500" as={FaBell} cursor="pointer" mr={5} />
+            <Icon color="gray.500" as={FiBell} cursor="pointer" mr={5} />
             <Avatar
               ml="4"
               size="sm"
