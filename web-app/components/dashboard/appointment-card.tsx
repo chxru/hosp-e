@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Avatar,
   Box,
   Center,
   Divider,
@@ -8,7 +9,6 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import PeopleTagBlock from "./people-tag-block";
 
 const AppointmentBlock: React.FC = () => {
   return (
@@ -28,7 +28,21 @@ const AppointmentBlock: React.FC = () => {
             <Divider orientation="vertical" />
           </Center>
 
-          <PeopleTagBlock />
+          <Center px="10px">
+            <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
+          </Center>
+
+          <Center pl="10px" pr="55px">
+            <VStack align="flex-start">
+              <Text fontWeight="bold" fontSize="md">
+                Maneesha nethmini
+              </Text>
+
+              <Text color="GrayText" fontSize="md">
+                VOG Surgent
+              </Text>
+            </VStack>
+          </Center>
 
           <Center mx="25px" height="50px">
             <Divider orientation="vertical" />
