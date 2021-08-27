@@ -1,16 +1,7 @@
 import React from "react";
-import {
-  Box,
-  Text,
-  Center,
-  Avatar,
-  Divider,
-  VStack,
-  HStack,
-  Spacer,
-} from "@chakra-ui/react";
+import { Box, Center, HStack, Spacer, Text, VStack } from "@chakra-ui/react";
 
-const PrescriptionsBlock: React.FC = ({}) => {
+const PrescriptionsBlock: React.FC = () => {
   return (
     <>
       <Box m="15px" p="20px" borderRadius="25px" boxShadow="lg">
@@ -20,12 +11,15 @@ const PrescriptionsBlock: React.FC = ({}) => {
               <Text fontWeight="bold" fontSize="md">
                 Euthyrax 50mg
               </Text>
+
               <Text color="GrayText" fontSize="md">
                 Expire on: 12 March 2021
               </Text>
             </VStack>
           </Center>
+
           <Spacer />
+
           <Center px="10px">
             <Text fontWeight="bold" fontSize="md">
               05829

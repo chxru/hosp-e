@@ -1,16 +1,7 @@
 import React from "react";
-import {
-  Box,
-  Text,
-  Center,
-  Avatar,
-  Divider,
-  VStack,
-  HStack,
-  Spacer,
-} from "@chakra-ui/react";
+import { Avatar, Center, Text, VStack } from "@chakra-ui/react";
 
-const PeopleTagSmallBlockSelect: React.FC = ({}) => {
+const PeopleTagSmallBlockSelect: React.FC = () => {
   return (
     <>
       <Center backgroundColor="green.50">

@@ -28,8 +28,10 @@ const DashboardPage: React.FC = () => {
             >
               Upcoming appoinments
             </Text>
-            <AppointmentBlock></AppointmentBlock>
-            <AppointmentBlock></AppointmentBlock>
+
+            <AppointmentBlock />
+            <AppointmentBlock />
+
             <Text
               m="15px"
               color="GrayText"
@@ -38,8 +40,10 @@ const DashboardPage: React.FC = () => {
             >
               Upcoming examinations
             </Text>
-            <NotificationBlock></NotificationBlock>
-            <AppointmentBlock></AppointmentBlock>
+
+            <NotificationBlock />
+            <AppointmentBlock />
+
             <Text
               m="15px"
               color="GrayText"
@@ -48,13 +52,14 @@ const DashboardPage: React.FC = () => {
             >
               Prescriptions
             </Text>
-            <PrescriptionsBlock></PrescriptionsBlock>
-            <PrescriptionsBlock></PrescriptionsBlock>
-            <Box height="100px"></Box>
+
+            <PrescriptionsBlock />
+            <PrescriptionsBlock />
           </Box>
 
           <Box w={{ base: "100%", md: "50%" }} pr="7px" backgroundColor="white">
-            <ImageBlock></ImageBlock>
+            <ImageBlock />
+
             <Text
               m="15px"
               color="GrayText"
@@ -63,7 +68,8 @@ const DashboardPage: React.FC = () => {
             >
               Schedule again
             </Text>
-            <PeopleHstackBlock></PeopleHstackBlock>
+
+            <PeopleHstackBlock />
           </Box>
         </Flex>
       </Container>

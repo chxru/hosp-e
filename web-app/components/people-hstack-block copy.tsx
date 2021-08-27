@@ -4,7 +4,7 @@ import { Box, Center, HStack } from "@chakra-ui/react";
 import PeopleTagSmallBlock from "./people-tag-block-sm";
 import PeopleTagSmallBlockSelect from "./people-tag-block-select";
 
-const PeopleHstackBlock: React.FC = ({}) => {
+const PeopleHstackBlock: React.FC = () => {
   return (
     <>
       <Box>
@@ -18,10 +18,10 @@ const PeopleHstackBlock: React.FC = ({}) => {
             rounded="full"
             backgroundColor="green.50"
           >
-            <PeopleTagSmallBlockSelect></PeopleTagSmallBlockSelect>
+            <PeopleTagSmallBlockSelect />
           </Center>
           <Center p="3" boxShadow="lg" borderRadius="35px" rounded="full">
-            <PeopleTagSmallBlock></PeopleTagSmallBlock>
+            <PeopleTagSmallBlock />
           </Center>
         </HStack>
       </Box>
