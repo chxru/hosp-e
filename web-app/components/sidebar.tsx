@@ -27,7 +27,7 @@ const NavItem = (props: { name: string; route: string }) => {
 
   return (
     <Button
-      width="3xs"
+      width="150px"
       justifyContent="left"
       bg="white"
       height="64px"
@@ -63,7 +63,7 @@ const SidebarContent = (props: {
     <Box
       as="nav"
       pos="fixed"
-      top="0"
+      top="10"
       left="0"
       zIndex="sticky"
       h="full"
@@ -73,7 +73,7 @@ const SidebarContent = (props: {
       overflowX="hidden"
       overflowY="auto"
       bg="white"
-      w={{ base: 54, md: 60, lg: 72 }}
+      w={{ base: 50, md: 50, lg: "200px" }}
       {...props}
     >
       <Flex
@@ -89,7 +89,7 @@ const SidebarContent = (props: {
           align="center"
           mt={-5}
           mb={5}
-          display={{ base: "flex", md: "none" }}
+          display={{ base: "flex", lg: "none" }}
         >
           <Heading size="lg" fontWeight="semibold">
             Hosp - e
@@ -99,6 +99,8 @@ const SidebarContent = (props: {
         {/* Navigation buttons */}
         <NavItem name="Dashboard" route="/dashboard" />
         <NavItem name="Home" route="/dashboard" />
+        <NavItem name="Profile" route="/dashboard" />
+        <NavItem name="Calender" route="/dashboard" />
       </Flex>
     </Box>
   );
@@ -108,7 +110,7 @@ const Sidebar: React.FC<sidebarProps> = ({ children }) => {
   const sidebar = useDisclosure();
   return (
     <Box as="section" bg="gray.50" minH="100vh" backgroundColor="#f8f8f8">
-      <SidebarContent display={{ base: "none", md: "unset" }} />
+      <SidebarContent display={{ base: "none", md: "none", lg: "unset" }} />
       <Drawer
         isOpen={sidebar.isOpen}
         onClose={sidebar.onClose}
@@ -138,7 +140,7 @@ const Sidebar: React.FC<sidebarProps> = ({ children }) => {
           {/* Toggle Button  */}
           <IconButton
             aria-label="Menu"
-            display={{ base: "inline-flex", md: "none" }}
+            display={{ base: "inline-flex", md: "inline-flex", lg: "none" }}
             onClick={sidebar.onOpen}
             icon={<Icon color="gray.500" as={FiMenu} cursor="pointer" />}
             size="lg"
@@ -185,13 +187,12 @@ const Sidebar: React.FC<sidebarProps> = ({ children }) => {
           </Flex>
         </Flex>
       </Flex>
-      <Box ml={{ base: 0, md: 60, lg: 72 }} transition=".3s ease">
-        <Box as="main" p="4" overflow="hidden" py={20} bg="white">
+      <Box ml={{ base: 0, md: 0, lg: "200px" }} transition=".3s ease">
+        <Box as="main" p="4" overflow="hidden" py={45} bg="white">
           {children}
         </Box>
       </Box>
     </Box>
   );
 };
-
 export default Sidebar;
