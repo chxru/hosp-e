@@ -17,9 +17,14 @@ const DashboardPage: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container overflowY="auto" maxW="6xl">
+      <Container overflowY="auto" maxW="6xl" mt={10}>
         <Flex direction={{ base: "column", md: "row" }} w="100%">
-          <Box w={{ base: "100%", md: "50%" }} pr="7px" backgroundColor="white">
+          <Box
+            w={{ base: "100%", md: "75%", lg: "50%" }}
+            mr={5}
+            pr="7px"
+            backgroundColor="white"
+          >
             <Text
               m="15px"
               color="GrayText"
@@ -57,7 +62,11 @@ const DashboardPage: React.FC = () => {
             <PrescriptionsBlock />
           </Box>
 
-          <Box w={{ base: "100%", md: "50%" }} pr="7px" backgroundColor="white">
+          <Box
+            w={{ base: "100%", md: "75%", lg: "50%" }}
+            pr="7px"
+            backgroundColor="white"
+          >
             <ImageBlock />
 
             <Text

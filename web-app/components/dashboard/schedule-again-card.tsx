@@ -15,12 +15,17 @@ const PeopleHstackBlock: React.FC = () => {
             borderWidth="thin"
             borderColor="green.300"
             borderRadius="35px"
-            rounded="full"
+            rounded={{ base: "full", md: "3xl", lg: "full" }}
             backgroundColor="green.50"
           >
             <PeopleTagSmallBlockSelect />
           </Center>
-          <Center p="3" boxShadow="lg" borderRadius="35px" rounded="full">
+          <Center
+            p="3"
+            boxShadow="lg"
+            borderRadius="35px"
+            rounded={{ base: "full", md: "3xl", lg: "full" }}
+          >
             <PeopleTagSmallBlock />
           </Center>
         </HStack>
