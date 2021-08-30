@@ -13,7 +13,7 @@ import {
 const AppointmentBlock: React.FC = () => {
   return (
     <>
-      <Box m="15px" p="20px" borderRadius="25px" boxShadow="lg">
+      <Box my="15px" py="20px" borderRadius="25px" boxShadow="lg">
         <HStack>
           <Center px="10px">
             <VStack align="flex-start">
@@ -50,7 +50,7 @@ const AppointmentBlock: React.FC = () => {
 
           <Spacer />
 
-          <Center px="10px">
+          <Center px="5px">
             <Text fontWeight="bold" fontSize="md">
               202
             </Text>
