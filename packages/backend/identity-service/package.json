@@ -1,12 +1,12 @@
 {
-  "name": "hospe-identity-service",
-  "version": "0.1.0",
+  "name": "@hospe/iam",
+  "version": "1.0.0",
   "description": "Handle identity store and services in hosp-e",
   "main": "index.js",
   "repository": "git@github.com:CharukaHS/hosp-e.git",
   "author": "CharukaHS",
   "license": "MIT",
-  "private": false,
+  "private": true,
   "scripts": {
     "dev": "nodemon index.ts",
     "init:db": "node sql/boot.js"
