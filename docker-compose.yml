@@ -1,17 +1,26 @@
 version: "3.1"
 
 services:
-  db:
-    image: postgres:13.3
-    restart: unless-stopped
-    ports:
-      - 7000:5432
+  postgres:
+    build: ./database
     environment:
       POSTGRES_PASSWORD: dbpassword
       POSTGRES_USER: hospe
       POSTGRES_DB: hospe
     volumes:
-      - hospe-vol:/var/lib/postgresql/data
+      - hospe-postgres:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: charuka@protonmail.com
+      PGADMIN_DEFAULT_PASSWORD: dbpassword
+    ports:
+      - 5433:80
+    volumes:
+      - ./database/pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
 
 volumes:
-  hospe-vol:
+  hospe-postgres:
