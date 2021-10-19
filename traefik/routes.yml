@@ -1,0 +1,20 @@
+http:
+  routers:
+    patient:
+      rule: "Host(`hospe.charukahs.com`)"
+      service: patient
+
+    pgadmin:
+      rule: "Host(`pgadmin.hospe.charukahs.com`)"
+      service: pgadmin
+
+  services:
+    patient:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:3000/"
+
+    pgadmin:
+      loadBalancer:
+        servers:
+          - url: "http://pgadmin/"

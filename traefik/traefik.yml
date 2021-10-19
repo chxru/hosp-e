@@ -1,0 +1,15 @@
+entryPoints:
+  web:
+    address: ":80"
+
+providers:
+  file:
+    filename: /etc/traefik/routes.yml
+    watch: true
+
+log:
+  level: ERROR # ERROR or DEBUG
+
+api:
+  dashboard: true
+  insecure: true

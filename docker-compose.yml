@@ -3,6 +3,7 @@ version: "3.1"
 services:
   postgres:
     build: ./database
+    restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: dbpassword
       POSTGRES_USER: hospe
@@ -12,15 +13,24 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
+    restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: charuka@protonmail.com
       PGADMIN_DEFAULT_PASSWORD: dbpassword
-    ports:
-      - 5433:80
     volumes:
       - ./database/pgadmin:/var/lib/pgadmin
     depends_on:
       - postgres
+
+  reverse-proxy:
+    image: traefik
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml
+      - ./traefik/routes.yml:/etc/traefik/routes.yml
 
 volumes:
   hospe-postgres:
