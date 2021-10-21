@@ -2,7 +2,7 @@ import React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 
-import Sidebar from "@hospe/ui-core/components/sidebar";
+import Layout from "@hospe/ui-core/components/Layout";
 
 const theme = extendTheme({
   colors: {
@@ -18,9 +18,9 @@ const theme = extendTheme({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <Sidebar>
+      <Layout>
         <Component {...pageProps} />
-      </Sidebar>
+      </Layout>
     </ChakraProvider>
   );
 }
