@@ -1,5 +1,22 @@
 {
   "name": "@hospe/ui-core",
   "version": "0.1.0",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@chakra-ui/react": "^1.6.5",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "framer-motion": "^4",
+    "next": "11.1.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.12.1",
+    "react-icons": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.11",
+    "eslint": "7.28.0",
+    "eslint-config-next": "11.0.0",
+    "typescript": "4.3.4"
+  }
 }
