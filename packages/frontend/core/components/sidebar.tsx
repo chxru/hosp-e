@@ -1,198 +1,141 @@
+import React from "react";
 import {
   Avatar,
   Box,
   Button,
   Drawer,
+  DrawerBody,
+  DrawerCloseButton,
   DrawerContent,
   DrawerOverlay,
   Flex,
-  Heading,
   Icon,
-  IconButton,
+  Text,
   useDisclosure,
-  Input,
-  InputGroup,
-  InputLeftElement,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { FiSearch, FiBell, FiMenu } from "react-icons/fi";
+import {
+  FiBell,
+  FiCommand,
+  FiHome,
+  FiMenu,
+  FiPackage,
+  FiSearch,
+  FiUser,
+} from "react-icons/fi";
+import type { IconType } from "react-icons";
 
-interface sidebarProps {
-  children: React.ReactNode;
-}
-
-const NavItem = (props: { name: string; route: string }) => {
+const NavItem = (props: { name: string; route: string; icon: IconType }) => {
   const router = useRouter();
-  const { name, route } = props;
+  const { name, route, icon } = props;
 
   return (
     <Button
-      width="150px"
+      width="200px"
       justifyContent="left"
-      bg="white"
-      height="64px"
+      alignItems="center"
+      bg="brand.background"
+      height="75px"
+      fontSize="1rem"
       mb="15px"
-      mx={-10}
-      _hover={{
-        bg: "gray.200",
-        borderRadius: "10px",
-        borderLeftRadius: "0px",
-      }}
-      _active={{
-        bg: "gray.200",
-        borderRadius: "10px",
-        borderLeftRadius: "0px",
-        transform: "scale(0.98)",
-      }}
-      _focus={{ _focus: "none" }}
+      color="brand.secondry"
       onClick={() => {
         router.push(route);
       }}
     >
+      <Icon color="brand.secondry" as={icon} cursor="pointer" mx="3" />
       {name}
     </Button>
   );
 };
 
-const SidebarContent = (props: {
-  display?: { [key: string]: string };
-  w?: string;
-  borderRight?: string;
-}) => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box
-      as="nav"
-      pos="fixed"
-      top="10"
-      left="0"
-      zIndex="sticky"
-      h="full"
-      mt={15}
-      pb="10"
-      px="50px"
-      overflowX="hidden"
-      overflowY="auto"
-      bg="white"
-      w={{ base: 50, md: 50, lg: "200px" }}
-      {...props}
-    >
-      <Flex
-        direction="column"
-        as="nav"
-        mt="25px"
-        mr="100px"
-        fontSize="sm"
-        color="gray.600"
-        aria-label="Main Navigation"
-      >
-        <Flex
-          align="center"
-          mt={-5}
-          mb={5}
-          display={{ base: "flex", lg: "none" }}
-        >
-          <Heading size="lg" fontWeight="semibold">
-            Hosp - e
-          </Heading>
+    <>
+      <Flex minWidth="100vw" overflowX="hidden">
+        {/* sidebar */}
+        <Flex direction="column" mt={50} display={{ base: "none", md: "flex" }}>
+          <NavItem name="Home" route="/dashboard" icon={FiHome} />
+          <NavItem name="Search" route="/dashboard" icon={FiSearch} />
+          <NavItem name="Profile" route="/dashboard" icon={FiUser} />
+          <NavItem name="Laboratory" route="/dashboard" icon={FiCommand} />
+          <NavItem name="Pharmacy" route="/dashboard" icon={FiPackage} />
         </Flex>
 
-        {/* Navigation buttons */}
-        <NavItem name="Dashboard" route="/dashboard" />
-        <NavItem name="Home" route="/dashboard" />
-        <NavItem name="Profile" route="/dashboard" />
-        <NavItem name="Calender" route="/dashboard" />
-      </Flex>
-    </Box>
-  );
-};
+        <Flex direction="column" flexGrow={1} maxWidth="6xl" marginX="auto">
+          {/* Topbar */}
+          <Flex
+            direction="row"
+            justify="space-between"
+            alignItems="center"
+            my={{ base: 30, md: 50 }}
+            mx={30}
+            overflowY="hidden"
+          >
+            {/* Title text */}
+            <Flex alignItems="center">
+              <Icon
+                display={{ base: "inline-block", md: "none" }}
+                color="brand.secondry"
+                as={FiMenu}
+                cursor="pointer"
+                mr="6"
+                onClick={onOpen}
+              />
 
-const Sidebar: React.FC<sidebarProps> = ({ children }) => {
-  const sidebar = useDisclosure();
-  return (
-    <Box as="section" bg="gray.50" minH="100vh" backgroundColor="#f8f8f8">
-      <SidebarContent display={{ base: "none", md: "none", lg: "unset" }} />
-      <Drawer
-        isOpen={sidebar.isOpen}
-        onClose={sidebar.onClose}
-        placement="left"
-      >
+              <Flex
+                direction={{ base: "column", md: "row" }}
+                fontSize="1.5rem"
+                textColor="brand.text"
+                lineHeight={1}
+                alignItems={{ base: "flex-start", md: "center" }}
+              >
+                <Text>Welcome to</Text>
+                <Text fontWeight="bold" ml={{ base: 0, md: 1 }}>
+                  Aloka Hospital
+                </Text>
+              </Flex>
+            </Flex>
+
+            {/* Avatar */}
+            <Flex align="center">
+              <Icon color="gray.500" as={FiBell} cursor="pointer" />
+              <Text
+                color="brand.sub"
+                display={{ base: "none", sm: "block" }}
+                ml={4}
+              >
+                Danial Smith
+              </Text>
+              <Avatar size="sm" name="Danial Smith" cursor="pointer" ml={4} />
+            </Flex>
+          </Flex>
+          <Box as="main">{children}</Box>
+        </Flex>
+      </Flex>
+
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
-          <SidebarContent w="full" borderRight="none" />
+          <DrawerCloseButton />
+
+          <DrawerBody>
+            {/* TODO: Change UI for drawer buttons */}
+            <NavItem name="Home" route="/dashboard" icon={FiHome} />
+            <NavItem name="Search" route="/dashboard" icon={FiSearch} />
+            <NavItem name="Profile" route="/dashboard" icon={FiUser} />
+            <NavItem name="Laboratory" route="/dashboard" icon={FiCommand} />
+            <NavItem name="Pharmacy" route="/dashboard" icon={FiPackage} />
+          </DrawerBody>
         </DrawerContent>
       </Drawer>
-
-      <Flex
-        display={{ base: "flex", md: "flex" }}
-        as="header"
-        align="center"
-        justify={{ base: "space-between", md: "space-between" }}
-        w="full"
-        px="4"
-        bg="white"
-        h="14"
-        overflowX="auto"
-        overflowY="hidden"
-        pos="fixed"
-        zIndex="sticky"
-      >
-        <Flex align="center">
-          {/* Toggle Button  */}
-          <IconButton
-            aria-label="Menu"
-            display={{ base: "inline-flex", md: "inline-flex", lg: "none" }}
-            onClick={sidebar.onOpen}
-            icon={<Icon color="gray.500" as={FiMenu} cursor="pointer" />}
-            size="lg"
-            mr={5}
-          />
-
-          <Heading size="lg" fontWeight="semibold">
-            Hosp - e
-          </Heading>
-        </Flex>
-
-        <Flex>
-          {/* Search  */}
-          <InputGroup
-            w="40"
-            size="sm"
-            display={{ base: "none", md: "flex" }}
-            mr={8}
-            borderWidth="0px"
-          >
-            <InputLeftElement>
-              <Icon color="gray.500" as={FiSearch} cursor="pointer" />
-            </InputLeftElement>
-            <Input
-              _focus={{ _focus: "none" }}
-              placeholder="Search"
-              borderRadius="15px"
-              background="#F5FAF8"
-              fontWeight="semibold"
-              borderColor="white"
-            />
-          </InputGroup>
-
-          {/* notification and profile icon */}
-          <Flex align="center">
-            <Icon color="gray.500" as={FiBell} cursor="pointer" mr={5} />
-            <Avatar
-              ml="4"
-              size="sm"
-              name="anubra266"
-              src="https://avatars.githubusercontent.com/u/30869823?v=4"
-              cursor="pointer"
-            />
-          </Flex>
-        </Flex>
-      </Flex>
-      <Box ml={{ base: 0, md: 0, lg: "200px" }} transition=".3s ease">
-        <Box as="main" p="4" overflow="hidden" py={45} bg="white">
-          {children}
-        </Box>
-      </Box>
-    </Box>
+    </>
   );
 };
-export default Sidebar;
+
+export default Layout;
