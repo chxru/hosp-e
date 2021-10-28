@@ -1,3 +1,3 @@
 const withTM = require("next-transpile-modules")(["@hospe/ui-core"]);
 
-module.exports = withTM();
+module.exports = withTM({ swcMinify: true });
