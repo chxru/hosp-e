@@ -1,31 +1,8 @@
 import express, { Router } from "express";
-import { checkSchema, Schema, validationResult } from "express-validator";
-import { PrismaClient } from "@prisma/client";
+import { checkSchema, validationResult } from "express-validator";
+import { login_schema, signup_schema } from "./schemas/auth.schema";
 
-const prisma = new PrismaClient();
 const router = Router();
-
-const login_schema: Schema = {
-  email: {
-    in: "body",
-    errorMessage: "Invalid email address",
-    isEmail: true,
-    trim: true,
-  },
-  password: {
-    in: "body",
-    errorMessage: "Invalid password",
-    // isStrong doesn't make sense in login schema validation
-    // but it will prevent unnecessary database reads in some cases
-    isStrongPassword: {
-      bail: true,
-      errorMessage: "Week password",
-    },
-  },
-};
-
-// TODO: Implement sign up schema
-const signup_schema: Schema = {};
 
 router.post(
   "/login",
@@ -36,10 +13,9 @@ router.post(
     if (!schemaError.isEmpty()) {
       return res.status(400).json({ err: schemaError.array() });
     }
+
     try {
-      const data = await prisma.data.findMany();
-      console.log(data);
-      res.send(data);
+      res.json({ success: true });
     } catch (error) {
       res.sendStatus(500);
     }
@@ -55,10 +31,9 @@ router.post(
     if (!schemaError.isEmpty()) {
       return res.status(400).json({ err: schemaError.array() });
     }
+
     try {
-      const data = await prisma.data.findMany();
-      console.log(data);
-      res.send(data);
+      res.json({ success: true });
     } catch (error) {
       res.sendStatus(500);
     }
