@@ -53,6 +53,18 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+const NavButtons: React.FC = () => {
+  return (
+    <>
+      <NavItem name="Home" route="/dashboard" icon={FiHome} />
+      <NavItem name="Search" route="/search" icon={FiSearch} />
+      <NavItem name="Profile" route="/dashboard" icon={FiUser} />
+      <NavItem name="Laboratory" route="/dashboard" icon={FiCommand} />
+      <NavItem name="Pharmacy" route="/dashboard" icon={FiPackage} />
+    </>
+  );
+};
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -60,11 +72,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Flex minWidth="100vw" overflowX="hidden">
         {/* sidebar */}
         <Flex direction="column" mt={50} display={{ base: "none", md: "flex" }}>
-          <NavItem name="Home" route="/dashboard" icon={FiHome} />
-          <NavItem name="Search" route="/dashboard" icon={FiSearch} />
-          <NavItem name="Profile" route="/dashboard" icon={FiUser} />
-          <NavItem name="Laboratory" route="/dashboard" icon={FiCommand} />
-          <NavItem name="Pharmacy" route="/dashboard" icon={FiPackage} />
+          <NavButtons />
         </Flex>
 
         <Flex direction="column" flexGrow={1} maxWidth="6xl" marginX="auto">
@@ -125,12 +133,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <DrawerCloseButton />
 
           <DrawerBody>
-            {/* TODO: Change UI for drawer buttons */}
-            <NavItem name="Home" route="/dashboard" icon={FiHome} />
-            <NavItem name="Search" route="/dashboard" icon={FiSearch} />
-            <NavItem name="Profile" route="/dashboard" icon={FiUser} />
-            <NavItem name="Laboratory" route="/dashboard" icon={FiCommand} />
-            <NavItem name="Pharmacy" route="/dashboard" icon={FiPackage} />
+            <NavButtons />
           </DrawerBody>
         </DrawerContent>
       </Drawer>
